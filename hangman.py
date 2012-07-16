@@ -13,7 +13,7 @@ def play_loop():
         print "Ok, I don't want to play with you either."
 
 def get_word():
-    corpus_root = "/home/aria/projects/hangman/outsidecorpus/"
+    corpus_root = "./outsidecorpus/"
     wordlists = PlaintextCorpusReader(corpus_root, '.*')
     word = random.choice(wordlists.words('corpus.txt')).lower()
     while not word.isalpha():
