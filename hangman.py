@@ -1,5 +1,6 @@
-from nltk.corpus import PlaintextCorpusReader
 import random
+
+words = 'Lollygag Widdershins Ornery Nincompoop Aardvark Bacon Banjo Aardvark Abacus Abundance Ache Acupuncture Airbrush Alien Anagram Angle Amazing Ankle Alphabet Antenna Aqua Asphalt Bacon Banana Bangles Banjo Bankrupt Bar Barracuda Basket Beluga Binder Birthday Bisect Blizzard Blunderbuss Boa Bog Bounce Broomstick Brought Bubble Budgie Bug Bugger Buff Burst Butter Buzz Cabana Cake Calculator Camera Candle Carnival Carpet Casino Cashew Catfish Ceiling Celery Chalet Chalk Chart Cheddar Chesterfield Chicken Chinchill Chocolate Chowder Coal Compass Compress Computer Conduct Contents Cookie Copper Corduroy Cow Cracker Crackle Croissant Cube Cupcake Curly Curtain Cushion Cuticle Daffodil Delicious Dictionary Dimple Disk Dodo Dolphin Dong Donuts Dork Dracula Effigy Egad Elastic Elephant Encasement Erosion Eyelash Fabulous Fantastic Feather Fetish Financial Finger Finite Fish Fizzle Fizzy Flash Flavour Flick Flock Flour Flower Foamy Foot Fork Fritter Fudge Funny Fuse Fusion Fuzzy Garlic Gelato Ghetto Glebe Glitter Glossy Groceries Goulashes Guacamole Gumdrop Haberdashery Hamster Happy Highlight Hippopotamus Hobbit Hold Hooligan Hydrant Icicles Idiot Implode Implosion Indeed Issue Itchy Jewel Jump Kabob Kasai Kite Kiwi Ketchup Knob Laces Lacy Laughter Laundry Leaflet Legacy Leprechaun Lollypop Lumberjack Macadamia Magenta Magic Magnanimous Mango Margarine Medicine Meh Melon Meow Mesh Metric Microphone Minnow Mitten Mozzarella Muck Mumble Mushy Mustache Nanimo Noodle Nostril Nuggets Oatmeal Oboe Octopus Odour Ointment Olive Overhead Oxen Pajamas Pancake Pansy Paprika Parmesan Pasta Pattern Pecan Pen Pepper Pepperoni Peppermint Perfume Periwinkle Photograph Pie Pierce Pillow Pimple Pineapple Pistachio Plush Polish Pompom Poodle Pop Popsicle Prism Prospector Prosper Pudding Puppet Puzzle Queer Query Radish Rainbow Ribbon Rotate Salami Sandwich Saturday Saturn Saxophone Scissors Scooter Scrabbleship Scrunchie Scuffle Shadow Sickish Silicone Slippery Smash Smooch Smut Snap Snooker Socks Soya Spaghett Sparkle Spatula Spiral Splurge Spoon Sprinkle Square Squiggle Squirrel Statistics Stuffing Sticky Sugar Sunshine Super Swirl Taffy Tangy Tape Tat Teepee Telephone Television Thinkable Tip Tofu Toga Trestle Tulip Turnip Turtle Tusks Ultimate Unicycle Unique Uranus Vegetable Waddle Waffle Wallet Walnut Wagon Window Whatever Whimsical Wobbly Yellow Zap Zebra Zigzag'.split()
 
 def play_loop():
     print "\n\n\n\n\nWelcome to Hangman! \nThe game where you get to hang a man!"
@@ -12,18 +13,14 @@ def play_loop():
     else:
         print "Ok, I don't want to play with you either."
 
-def get_word():
-    corpus_root = "./outsidecorpus/"
-    wordlists = PlaintextCorpusReader(corpus_root, '.*')
-    word = random.choice(wordlists.words('corpus.txt')).lower()
-    while not word.isalpha():
-        word = random.choice(wordlists.words('corpus.txt')).lower()
-    return word
+def get_word(wordList):
+    wordIndex = random.randint(0, len(wordList) - 1)
+    return wordList[wordIndex].lower()
 
 class Game(object):
     
     def __init__(self):
-        self.word = get_word()
+        self.word = get_word(words)
         self.pre = []
         self.hangman = HangMan()
     
